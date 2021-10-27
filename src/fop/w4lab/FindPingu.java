@@ -4,6 +4,7 @@ public class FindPingu extends Maze {
     static int[][] maze;
 
     public static void main(String[] args) {
+        int k=0;
         int width = readInt("Width of the labyrinth?");
         int height = readInt("Height of the labyrinth?");
         int maxDistance = readInt("How far do you dare to go?");
