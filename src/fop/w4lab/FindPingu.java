@@ -17,28 +17,19 @@ public class FindPingu extends Maze {
         // maze = generatePenguinMaze(width, height);
         int penguins = walk(1, 0, maxDistance);
         System.out.println("Rescued pinguins: " + penguins);
+
     }
+
 
     public static int walk(int x, int y, int maxDistance) {
         if (maxDistance < 0 || x >= maze.length || x < 0 || y < 0 || y >= maze[0].length) return 0;
         if (maze[x][y] == WALL || maze[x][y] == OLD_PATH_ACTIVE) return 0;
+        int p=0;
+        if (maze[x][y] == PENGUIN) p++;
+       /* int[][] mat = new int[][] {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+        // int mat[][] = {{-1,0},{0,1},{1,0},{0,-1}} esec mosula. */
+        return p + walk(x+1,y,maxDistance - 1)+walk(x,y+1,maxDistance -1)+walk(x-1,y,maxDistance - 1)+walk(x,y-1,maxDistance - 1);
 
-        int sum = 0;
-        if (maze[x][y] == PENGUIN)
-            sum = 1;
-        int mat[][] = new int[][]{{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
-        // int mat[][] = {{-1,0},{0,1},{1,0},{0,-1}} esec mosula.
-        maze[x][y] = PLAYER;
-        draw(maze);
-        maze[x][y] = OLD_PATH_ACTIVE;
-        for (int i = 0; i < 4; i++)
-        {     sum += walk(x + mat[i][0], y + mat[i][1], maxDistance - 1);
-        maze[x][y] = PLAYER;
-        draw(maze);
-        maze[x][y] = OLD_PATH_ACTIVE;
-    }
-        maze[x][y] = OLD_PATH_DONE;
-        return sum;
     }
 
 
